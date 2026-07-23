@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@500;700&family=Noto+Sans+Gujarati:wght@400;600&display=swap');
+
+:root {
+    --bg: #3B1220;
+    --bg-deep: #1c080f;
+    --gold: #E8A23C;
+    --gold-soft: #F0C378;
+    --ivory: #F5EBD8;
+    --teal: #538077;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(ellipse at top, var(--bg) 0%, var(--bg-deep) 100%);
+    font-family: 'Noto Sans Gujarati', sans-serif;
+    padding: 24px;
+}
+
+.container {
+    width: 100%;
+    max-width: 460px;
+    text-align: center;
+    padding: 48px 32px 40px;
+    position: relative;
+}
+
+/* Diya (lamp) signature element */
+.diya {
+    width: 40px;
+    height: 20px;
+    margin: 0 auto 20px;
+    position: relative;
+}
+
+.diya::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 16px;
+    background: var(--gold);
+    border-radius: 0 0 20px 20px / 0 0 16px 16px;
+    clip-path: ellipse(20px 10px at 50% 0%);
+}
+
+.flame {
+    width: 8px;
+    height: 20px;
+    background: linear-gradient(to top, var(--gold) 0%, var(--gold-soft) 60%, #fff6dd 100%);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: flicker 2.4s ease-in-out infinite;
+    filter: drop-shadow(0 0 4px var(--gold));
+}
+
+.flame-glow {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(232, 162, 60, 0.35) 0%, transparent 70%);
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes flicker {
+
+    0%,
+    100% {
+        transform: translateX(-50%) scale(1) rotate(0deg);
+    }
+
+    25% {
+        transform: translateX(-50%) scale(1.05, 0.95) rotate(-2deg);
+    }
+
+    50% {
+        transform: translateX(-50%) scale(0.95, 1.05) rotate(1deg);
+    }
+
+    75% {
+        transform: translateX(-50%) scale(1.03, 0.97) rotate(-1deg);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.6;
+        transform: translateX(-50%) scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1.15);
+    }
+}
+
+.container.special .flame-glow {
+    animation-duration: 1.6s;
+    background: radial-gradient(circle, rgba(232, 162, 60, 0.55) 0%, transparent 70%);
+}
+
+.container.special .flame {
+    filter: drop-shadow(0 0 10px var(--gold));
+}
+
+.eyebrow {
+    font-family: 'Noto Sans Gujarati', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--teal);
+    background: rgba(62, 114, 104, 0.297);
+    display: inline-block;
+    padding: 10px 23px 9px 23px;
+    border-radius: 20px;
+    margin-bottom: 25px;
+}
+
+h1 {
+    font-family: 'Baloo Bhaina 2', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 19px;
+}
+
+#suvichar-box {
+    border-top: 1px solid rgba(245, 235, 216, 0.15);
+    border-bottom: 1px solid rgba(245, 235, 216, 0.15);
+    padding: 28px 8px;
+}
+
+#suvichar-text {
+    font-family: 'Noto Sans Gujarati', sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.8;
+    color: var(--ivory);
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 26px;
+    }
+
+    #suvichar-text {
+        font-size: 19px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .flame,
+    .flame-glow {
+        animation: none;
+    }
+}
