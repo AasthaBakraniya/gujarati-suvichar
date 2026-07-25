@@ -19,7 +19,7 @@ async function generateSuvichar(specialDay) {
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
         method: "POST",
         headers: {
-            "Authorization": "Bearer Your_API_Key", "Content-Type": "application/json"
+            "Authorization": "Bearer yourownapikey", "Content-Type": "application/json"
         },
         body: JSON.stringify({
             model: "anthropic/claude-sonnet-5",
@@ -58,7 +58,7 @@ Rules:
         const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
             method: "POST",
             headers: {
-                "Authorization": "Bearer Your_API_Key", "Content-Type": "application/json"
+                "Authorization": "Bearer yourownapikey", "Content-Type": "application/json"
             },
             body: JSON.stringify({
                 model: "anthropic/claude-sonnet-5",
@@ -124,14 +124,20 @@ async function init() {
         }
 
         const suvichar = await generateSuvichar(specialDay);
-        document.getElementById("suvichar-text").textContent = suvichar;
+        document.getElementById("suvichar-loader").classList.add("hidden");
+        const textEl = document.getElementById("suvichar-text");
+        textEl.textContent = suvichar;
+        textEl.classList.remove("hidden");
 
     } catch (error) {
         console.error("Application Error:", error);
         document.getElementById("date-info").textContent =
             "⚠️ પંચાંગ માહિતી લોડ થઈ શકી નથી";
-        document.getElementById("suvichar-text").textContent =
-            "⚠️ કંઈક ખોટું થયું. કૃપા કરીને ફરી પ્રયાસ કરો.";
+
+        document.getElementById("suvichar-loader").classList.add("hidden");
+        const textEl = document.getElementById("suvichar-text");
+        textEl.textContent = "⚠️ કંઈક ખોટું થયું. કૃપા કરીને ફરી પ્રયાસ કરો.";
+        textEl.classList.remove("hidden");
     }
 }
 
